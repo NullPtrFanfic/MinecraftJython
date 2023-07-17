@@ -30,27 +30,13 @@ jobs:
 
           java-version: 1.8
 
-      - name: Set up Zsh
-
-        run: sudo apt-get install zsh -y
-
-      - name: Download Spigot
-
-        run: |
-
-          wget https://cdn.getbukkit.org/spigot/spigot-1.17.jar
-
-      - name: Download libraries
-
-        run: |
-          wget https://repo1.maven.org/maven2/org/java-websocket/Java-WebSocket/1.4.0/Java-WebSocket-1.4.0.jar 
-          wget https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar
-
       - name: Build
 
         run: |
           #!/bin/zsh
+          cd ServerPythonInterpreterPlugin
           mvn clean package
+          cp target/MinecraftPyServerPlugin.jar .. 
           
       - name: Upload artifact
 

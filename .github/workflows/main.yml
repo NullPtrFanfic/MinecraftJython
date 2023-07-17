@@ -45,5 +45,5 @@ jobs:
 
           name: artifact
 
-          path: MinecraftPyServer.jar
+          path: /home/runner/work/MinecraftJython/MinecraftJython/target/minecraftpyserver-1.0.0-SNAPSHOT-jar-with-dependencies.jar
 

@@ -1,72 +1,54 @@
-name: Build and Package MinecraftPyServer
+name: Build DEV Jars
 
-on:
-
-  push:
-
-    branches:
-
-      - main
+on: [push, pull_request]
 
 jobs:
 
-  build:
+  build_dev_jars:
+
+    name: Build DEV jars
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Checkout repository
+      - uses: actions/checkout@v2
 
-        uses: actions/checkout@v2
+        with:
 
-      - name: Set up Java
+          fetch-depth: 0
+
+      - name: Setup JDK
 
         uses: actions/setup-java@v2
 
         with:
 
-          java-version: '11'
+          distribution: 'adopt'
 
-      - name: Set up Zsh
+          java-version: '17'
 
-        run: sudo apt-get install zsh
-
-      - name: Build and Package MinecraftPyServer
+      - name: Build with Gradle
 
         run: |
 
-          set -ex
+         ./gradlew jar
 
-          SPIGOT_JAR=spigot-1.17.jar
+          git_hash=$(git rev-parse --short "$GITHUB_SHA")
 
-          WEBSOCKET_JAR=java-websocket-1.4.0.jar
+          echo "git_hash=$git_hash" >> $GITHUB_ENV
 
-          JYTHON_JAR=jython-standalone-2.7.2.jar
+          echo "snapshotVersion=5.5-SNAPSHOT" >> $GITHUB_ENV
 
-          pushd ServerPythonInterpreterPlugin
+          echo "artifactPath=$(pwd)/builds" >> $GITHUB_ENV
 
-          rm -rf com/
+      - name: Upload Plugin jar
 
-          pushd src-common/
-
-          # Compile the plugin classes
-
-          javac -cp ".:../lib-spigot/${SPIGOT_JAR}:../lib-common/${WEBSOCKET_JAR}:../lib-common/${JYTHON_JAR}" -d .. com/**/*.java
-
-          popd
-
-          jar cvf ../MinecraftPyServer.jar *.yml lib-common/ python/ com/
-
-          popd
-
-      - name: Upload MinecraftPyServer artifact
-
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
 
         with:
 
-          name: MinecraftPyServer
+          name: Plugin-${{ env.snapshotVersion }}-${{ env.git_hash }}.jar
 
-          path: MinecraftPyServer.jar
+          path: ${{ env.artifactPath }}/Plugin-${{ env.snapshotVersion }}.jar
 

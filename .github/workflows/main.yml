@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Java CI
 
 on:
 
@@ -34,23 +34,9 @@ jobs:
 
       
 
-      - name: Build with Maven
-
-        run: mvn clean package
-
-      
-
-      - name: Prepare files for plugin
+      - name: Build
 
         run: |
-
-          SPIGOT_JAR=spigot-1.17.jar
-
-          WEBSOCKET_JAR=java-websocket-1.4.0.jar
-
-          JYTHON_JAR=jython-standalone-2.7.2.jar
-
-          
 
           pushd ServerPythonInterpreterPlugin
 
@@ -64,7 +50,7 @@ jobs:
 
           # Compile the plugin classes
 
-          javac -cp ".:../lib-spigot/${SPIGOT_JAR}:../lib-common/${WEBSOCKET_JAR}:../lib-common/${JYTHON_JAR}" -d .. com/**/*.java
+          javac -d .. com/**/*.java
 
           popd
 

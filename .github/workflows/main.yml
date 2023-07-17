@@ -35,7 +35,7 @@ jobs:
         run: |
           #!/bin/zsh
           mvn clean package
-          cp target/MinecraftPyServerPlugin.jar .. 
+          cp /home/runner/work/MinecraftJython/MinecraftJython/target/minecraftpyserver-1.0.0-SNAPSHOT-jar-with-dependencies.jar .. 
           
       - name: Upload artifact
 

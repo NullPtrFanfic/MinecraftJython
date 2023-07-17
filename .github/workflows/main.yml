@@ -38,15 +38,15 @@ jobs:
 
           rm -rf com/
 
-          # Compile the plugin classes
-
-          find . -name '*.java' -print | xargs javac -d .. -sourcepath .
-
           pushd src-common/
 
-          jar cvf ../MinecraftPyServer.jar *.yml lib-common/ python/ com/
+          # Compile the plugin classes
+
+          javac -cp ".:../lib-spigot/spigot-1.17.jar:../lib-common/java-websocket-1.4.0.jar:../lib-common/jython-standalone-2.7.2.jar" -d .. com/**/*.java
 
           popd
+
+          jar cvf ../MinecraftPyServer.jar *.yml lib-common/ python/ com/
 
           popd
 

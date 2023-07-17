@@ -49,7 +49,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.macuyiko.minecraftpyserver.YOUR_MAIN_CLASS</mainClass>
+                            <mainClass>com.macuyiko.minecraftpyserver.MinecraftPyServerPlugin</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

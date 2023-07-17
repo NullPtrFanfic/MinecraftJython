@@ -43,7 +43,7 @@ jobs:
       - name: Download libraries
 
         run: |
-          wget https://repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-api/9.4.43.v20210629/websocket-api-9.4.43.v20210629.jar 
+          wget https://repo1.maven.org/maven2/org/java-websocket/Java-WebSocket/1.4.0/Java-WebSocket-1.4.0.jar 
           wget https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar
 
       - name: Build

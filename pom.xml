@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Укажите информацию о вашем проекте -->
+    <groupId>your.group.id</groupId>
+    <artifactId>your-plugin-name</artifactId>
+    <version>1.0.0</version>
+    <name>Your Plugin Name</name>
+
+    <properties>
+        <!-- Версия Spigot API, здесь укажите нужную версию 1.17.x -->
+        <spigot.version>1.17-R0.1-SNAPSHOT</spigot.version>
+    </properties>
+
+    <dependencies>
+        <!-- Зависимости вашего плагина -->
+        <!-- Пример зависимости Spigot API -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>${spigot.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Другие настройки вашего проекта, если необходимо -->
+
+</project>

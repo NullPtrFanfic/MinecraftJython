@@ -65,7 +65,7 @@ jobs:
 
           pushd src-common/
 
-          javac -cp ".:../lib-spigot/${SPIGOT_JAR}:../lib-common/${WEBSOCKET_JAR}:../lib-common/${JYTHON_JAR}" ServerPythonInterpreterPlugin/src-common/com/macuyiko/minecraftpyserver/**/*.java
+          javac -cp ".:../lib-spigot/${SPIGOT_JAR}:../lib-common/${WEBSOCKET_JAR}:../lib-common/${JYTHON_JAR}" ServerPythonInterpreterPlugin/src-common/com/macuyiko/minecraftpyserver/*.java
           popd
 
           jar cvf ../MinecraftPyServer.jar *.yml lib-common/ python/ com/

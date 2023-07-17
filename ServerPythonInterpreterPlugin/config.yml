@@ -1,5 +1,5 @@
 pythonconsole:
- telnetport: 44444
- websocketport: 44445
+ telnetport: 45916
+ websocketport: 45917
  enablechatcommands: true
  disconnecttimeout: 900

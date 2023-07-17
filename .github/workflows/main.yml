@@ -30,7 +30,7 @@ jobs:
 
       - name: Set up Zsh
 
-        run: sudo apt-get install zsh
+        run: sudo apt-get install zsh -y
 
       - name: Build and Package MinecraftPyServer
 
@@ -69,3 +69,4 @@ jobs:
           name: MinecraftPyServer
 
           path: MinecraftPyServer.jar
+

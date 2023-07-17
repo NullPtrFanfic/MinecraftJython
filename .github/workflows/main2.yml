@@ -26,7 +26,7 @@ jobs:
 
         with:
 
-          java-version: '11'
+          java-version: '8'
 
       - name: Set up Zsh
 
@@ -52,7 +52,7 @@ jobs:
 
           # Compile the plugin classes
 
-          javac -cp ".:../lib-spigot/${SPIGOT_JAR}:../lib-common/${WEBSOCKET_JAR}:../lib-common/${JYTHON_JAR}" -d .. com/**/*.java
+          javac -sourcepath ".:../lib-spigot/${SPIGOT_JAR}:../lib-common/${WEBSOCKET_JAR}:../lib-common/${JYTHON_JAR}" -d .. com/**/*.java
 
           popd
 

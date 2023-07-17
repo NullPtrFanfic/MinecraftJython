@@ -4,11 +4,11 @@ on:
 
   push:
 
-    branches: [ master ]
+    branches: [master]
 
   pull_request:
 
-    branches: [ master ]
+    branches: [master]
 
 jobs:
 
@@ -18,24 +18,73 @@ jobs:
 
     steps:
 
-    - uses: actions/checkout@v2
+      - name: Checkout code
 
-    - name: Set up JDK 1.8
+        uses: actions/checkout@v2
 
-      uses: actions/setup-java@v1
+      
 
-      with:
+      - name: Set up JDK 1.8
 
-        java-version: 1.8
+        uses: actions/setup-java@v1
 
-    - name: Build with Maven
+        with:
 
-      run: mvn clean package
+          java-version: 1.8
 
-    - uses: actions/upload-artifact@v1
+      
 
-      with:
+      - name: Build with Maven
 
-        name: artifact
+        run: mvn clean package
 
-        path: target/
+      
+
+      - name: Prepare files for plugin
+
+        run: |
+
+          SPIGOT_JAR=spigot-1.17.jar
+
+          WEBSOCKET_JAR=java-websocket-1.4.0.jar
+
+          JYTHON_JAR=jython-standalone-2.7.2.jar
+
+          
+
+          pushd ServerPythonInterpreterPlugin
+
+          
+
+          rm -rf com/
+
+          
+
+          pushd src-common/
+
+          # Compile the plugin classes
+
+          javac -cp ".:../lib-spigot/${SPIGOT_JAR}:../lib-common/${WEBSOCKET_JAR}:../lib-common/${JYTHON_JAR}" -d .. com/**/*.java
+
+          popd
+
+          
+
+          jar cvf ../MinecraftPyServer.jar *.yml lib-common/ python/ com/
+
+          
+
+          popd
+
+      
+
+      - name: Upload artifact
+
+        uses: actions/upload-artifact@v2
+
+        with:
+
+          name: artifact
+
+          path: MinecraftPyServer.jar
+

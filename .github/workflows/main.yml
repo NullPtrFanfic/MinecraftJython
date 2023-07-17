@@ -68,7 +68,7 @@ jobs:
           javac -cp ".:../lib-spigot/${SPIGOT_JAR}:../lib-common/${WEBSOCKET_JAR}:../lib-common/${JYTHON_JAR}" -d .. com/macuyiko/minecraftpyserver/*.java
           popd
 
-          jar cvf ../MinecraftPyServer.jar *.yml lib-common/ python/ com/ lib-spigot/spigot-api-1.19.3-R0.1-20221223.013119-20-shaded.jar
+          jar -cfv lib-spigot/spigot-api-1.19.3-R0.1-20221223.013119-20-shaded.jar
 
           popd
 

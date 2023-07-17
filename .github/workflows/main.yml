@@ -43,9 +43,6 @@ jobs:
       - name: Download libraries
 
         run: |
-
-          wget https://repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-server/11.0.3/websocket-server-11.0.3.jar
-
           wget https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.2/jython-standalone-2.7.2.jar
 
       - name: Build

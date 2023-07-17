@@ -22,8 +22,6 @@ jobs:
 
         uses: actions/checkout@v2
 
-      
-
       - name: Set up JDK 1.8
 
         uses: actions/setup-java@v1
@@ -32,37 +30,25 @@ jobs:
 
           java-version: 1.8
 
-      
-
       - name: Build
 
         run: |
 
           pushd ServerPythonInterpreterPlugin
 
-          
-
           rm -rf com/
-
-          
-
-          pushd src-common/
 
           # Compile the plugin classes
 
-          javac -d .. com/**/*.java
+          find . -name '*.java' -print | xargs javac -d .. -sourcepath .
 
-          popd
-
-          
+          pushd src-common/
 
           jar cvf ../MinecraftPyServer.jar *.yml lib-common/ python/ com/
 
-          
-
           popd
 
-      
+          popd
 
       - name: Upload artifact
 

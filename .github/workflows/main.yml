@@ -34,7 +34,6 @@ jobs:
 
         run: |
           #!/bin/zsh
-          cd ServerPythonInterpreterPlugin
           mvn clean package
           cp target/MinecraftPyServerPlugin.jar .. 
           

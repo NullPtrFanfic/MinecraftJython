@@ -1,38 +1,45 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- Версия POM-модели -->
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Идентификатор группы (group) и артефакта (artifact) проекта -->
     <groupId>com.example</groupId>
     <artifactId>minecraftpyserver</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <!-- Свойства проекта (например, версии компилятора и целевой платформы) -->
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <!-- Репозитории, из которых будут загружаться зависимости -->
     <repositories>
-        <!-- Add the Spigot Maven repository -->
+        <!-- Добавляем репозиторий Spigot -->
         <repository>
             <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
     </repositories>
 
+    <!-- Зависимости проекта -->
     <dependencies>
-        <!-- Зависимости для Spigot и библиотеки -->
+        <!-- Зависимость от Spigot API -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.12.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Зависимость от Java-WebSocket -->
         <dependency>
             <groupId>org.java-websocket</groupId>
             <artifactId>Java-WebSocket</artifactId>
             <version>1.4.0</version>
         </dependency>
+        <!-- Зависимость от Jython Standalone -->
         <dependency>
             <groupId>org.python</groupId>
             <artifactId>jython-standalone</artifactId>
@@ -40,26 +47,32 @@
         </dependency>
     </dependencies>
 
+    <!-- Конфигурация сборки проекта -->
     <build>
         <plugins>
-            <!-- Плагин для сборки и создания JAR -->
+            <!-- Плагин для компиляции Java-кода -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
+                    <!-- Версия исходного кода и целевой платформы -->
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!-- Плагин для сборки JAR -->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
+                    <!-- Конфигурация манифеста JAR -->
                     <archive>
                         <manifest>
+                            <!-- Указываем основной класс, который будет загружен при запуске плагина -->
                             <mainClass>com.macuyiko.minecraftpyserver.MinecraftPyServerPlugin</mainClass>
                         </manifest>
                     </archive>
+                    <!-- Указываем, что хотим включить все зависимости в JAR -->
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
@@ -71,6 +84,29 @@
                         <goals>
                             <goal>single</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Плагин для копирования ресурсов (включая plugin.yml) в JAR -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${project.artifactId}/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>plugin.yml</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

@@ -34,9 +34,9 @@ jobs:
 
         run: |
           #!/bin/zsh
-          mvn clean package
-          cp /home/runner/work/MinecraftJython/MinecraftJython/target/minecraftpyserver-1.0.0-SNAPSHOT-jar-with-dependencies.jar .. 
-          
+          mvn clean package 
+          /home/runner/work/MinecraftJython/MinecraftJython/target/minecraftpyserver-1.0.0-SNAPSHOT-jar-with-dependencies.jar ServerInterpreterMinecraftPlugin/plugin.yml ServerInterpreterMinecraftPlugin/lib-common/ ServerInterpreterMinecraftPlugin/com/
+          cp /home/runner/work/MinecraftJython/MinecraftJython/target/minecraftpyserver-1.0.0-SNAPSHOT-jar-with-dependencies.jar ..
       - name: Upload artifact
 
         uses: actions/upload-artifact@v2
